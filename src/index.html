@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SC3 Translation helper</title>
+
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<meta charset="utf-8">
+
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+			const win = nw.Window.get();
+
+			const fs = require("fs");
+			const clipboard = nw.Clipboard.get();
+			const translate = require('google-translate-api');
+
+			const base_title = document.title;
+
+			// Disable Google's keylogger
+			chrome.settingsPrivate.setPref(
+				'spellcheck.use_spelling_service', false, "null", 
+				console.log.bind(console, "External spelling service disabled.")
+			);
+
+			$(function() {
+				$("#act_sp input").change(function() {
+					var dics = [], enabled = this.checked;
+					if ( enabled ) { dics = ["en-US"]; }
+
+					chrome.settingsPrivate.setPref(
+						'spellcheck.dictionaries', dics, "null", 
+						console.log.bind(console, "spellchecker updated.", dics)
+					);
+				});
+
+				$("#act_sp input").click();
+			});
+		</script>
+	</head>
+	<body>
+		<div id="drop-click-area" onclick="document.getElementById('file-select').click()">
+			<input type="file" id="file-select" accept=".json,.txt,text/plain,text/json,application/json" style="display: none;">
+			<p>Drop file here or click to select.</p>
+		</div>
+
+		<div class="help-text">
+			<p>This utility will let you translate files exported from the extension or the client.</p>
+			<p>Please note functions as romaji or translation serve for reference purpose ONLY.
+				<br>Romaji can sometimes fail to show names right or some small vocals.
+				<br>Translation is even more imprecise,
+				<br>it may not detect which subject is speaking or the time.
+				<br>Not letting alone the fact that it IS machine translation.</p>
+			<p>Some commands are availiable:</p>
+			<p class="commands">
+				<br>Alt + R  -  Show romaji.
+				<br>Alt + T  -  Show google translation.
+				<br>Enter    -  Go to next line.
+				<br>Page dw  -  Go to next line.
+				<br>Page up  -  Go to previous line.
+				<br>Ctrl + S -  Save file.
+			</p>
+		</div>
+
+		<div class="translation hide">
+			<div class="field original-dialog">
+				<small id="chara"></small>
+				<small class="bottom-right">
+					<button onclick="SCtrans.copyOriginal()" title="Ctrl + O">Copy</button>
+				</small>
+				<small class="desc">Dialog <span id="count"></span></small>
+				<span id="input_orig" class="text"></span>
+				<small id="got_romaji" class="bottom-hint"></small>
+			</div>
+
+			<div class="field translate">
+				<textarea id="input_translate" class="text" placeholder="Write translated text as one-line"></textarea>
+				<small id="got_trad" class="bottom-hint" title="PLEASE, use ONLY as reference."></small>
+				<small id="act_sp" class="bottom-right"><label>Spellcheck <input type="checkbox" name="sp_enabled"></label></small>
+			</div>
+
+			<div style="float: left">
+				<button onclick="SCtrans.prev()" title="Page up">◄ Previous</button>
+				<button onclick="SCtrans.getGoT({romaji: true})" title="Alt + R">Get Romaji</button>
+				<button onclick="SCtrans.getGoT({trad: true})" title="Alt + T">Google Translation (EN)</button>
+			</div>
+
+			<div style="float: right">
+				<button onclick="SCtrans.save_file()" title="Ctrl + S">Save File</button>
+				<button onclick="SCtrans.next()" title="Page down">Next ►</button>
+
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/SCtrans.js"></script>
+		<script type="text/javascript" src="js/reader.js"></script>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "SCDialogTC",
+  "version": "1.0.0000.1",
+  "main": "index.html",
+  "window": {
+    "width": 550,
+    "height": 335,
+    "title": "SC3 Translation Helper"
+  },
+  "dependencies": {
+    "google-translate-api": "^2.3.0"
+  },
+  "chromium-args": "--enable-spell-checking"
+}
