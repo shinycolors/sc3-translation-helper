@@ -6,13 +6,18 @@ With that in mind, we've created this small utility to assist even more in the p
 
 ### FEATURES
   * Load/Export dialog files.
-  * Romaji reading and aproximated translation.
-  * Spellcheck.
+  * Romaji reading and aproximated translation*.
+  * Spellcheck*.
   * Dialog count.
   * Keyboard shortcuts.
   * **more to come**
 
-*Currently, it only supports english for translation and spellcheck dictionaries.*
+**Currently, it only supports english for translation and spellcheck dictionaries.*
 
 ### SCREENSHOT
 ![Screenshot](https://user-images.githubusercontent.com/38864859/39847447-3a36f4f4-53c7-11e8-8d25-0ad25ba7406f.png)
+
+### DOWNLOAD
+|     Type     | Platform | Architecture | Download |
+|:------------:|:--------:|--------------|----------|
+| **Portable** |  Windows |    64 bits   | [**here**](https://github.com/shinycolors/sc3-translation-helper/releases/download/1.0.0000.1/SC3TH_portable.zip) |
