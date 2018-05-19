@@ -20,4 +20,5 @@ With that in mind, we've created this small utility to assist even more in the p
 ### DOWNLOAD
 |     Type     | Platform | Architecture | Download |
 |:------------:|:--------:|--------------|----------|
-| **Portable** |  Windows |    64 bits   | [**here**](https://github.com/shinycolors/sc3-translation-helper/releases/download/1.0.0000.1/SC3TH_portable.zip) |
+| **Portable** |  Windows |    64 bits   | [**here**](https://github.com/shinycolors/sc3-translation-helper/releases/download/1.0.0000.1/SC3TH_portable_x64.zip) |
+| **Portable** |  Windows |    32 bits   | [**here**](https://github.com/shinycolors/sc3-translation-helper/releases/download/1.0.0000.1/SC3TH_portable_x86.zip) |
